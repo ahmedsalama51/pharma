@@ -53,7 +53,7 @@
                                                     <span class="content">{{$comment-> content}}</span>
                                                     @if (Auth::user()->id == $comment->user_id)
                                                     <span><a class="glyphicon glyphicon-pencil feed" data-rowid="{{ $comment->id }}" href=""></a></span>
-                                                    <span><a  class="glyphicon glyphicon-trash" href="/feedcomment/{{$comment->id}}/delete"></a><span>
+                                                    <span><a  class="glyphicon glyphicon-trash delete" data-rowid="{{ $comment->id }}" href="/feedcomment/{{$comment->id}}/delete"></a><span>
                                                     @endif
                                                 <!-- up -->
 
@@ -68,6 +68,7 @@
                                                         
                                                     </button>
                                                </form>
+                                               <br><hr>
                                             </div>
                                            <!--  </div> -->
                                            <!-- edit comment-->
@@ -84,8 +85,9 @@
                                                                     <input type='reset' class='btn btn-danger cancel' value="Cancel"/>  
                                                             </div>
                                                     </form>
+                                                <br>
                                             </div> 
-                                            <br><hr>
+                                            
                                         
                                         
                                         @endforeach

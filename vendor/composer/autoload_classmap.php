@@ -11,6 +11,8 @@ return array(
     'AddColumnsToPersonalDatasTable' => $baseDir . '/database/migrations/2016_06_07_094637_add_columns_to_personal_datas_table.php',
     'AddDealetdAtToCommentsTable' => $baseDir . '/database/migrations/2016_06_05_143336_add_dealetd_at_to_comments_table.php',
     'AddDealetdAtToPostsTable' => $baseDir . '/database/migrations/2016_06_05_143343_add_dealetd_at_to_posts_table.php',
+    'AddDeletedAtToFeedbacksTable' => $baseDir . '/database/migrations/2016_06_07_184010_add_deleted_at_to_feedbacks_table.php',
+    'AddDeletedatFieldToFeedcommentsTable' => $baseDir . '/database/migrations/2016_06_10_204958_add_deletedat_field_to_feedcomments_table.php',
     'AddNameToRequestsTable' => $baseDir . '/database/migrations/2016_06_01_120104_add_name_to_requests_table.php',
     'AddNameToUsersTable' => $baseDir . '/database/migrations/2016_05_29_141359_add_name_to_users_table.php',
     'AddNewNumsToUsersTable' => $baseDir . '/database/migrations/2016_06_05_122811_add_new_nums_to_users_table.php',

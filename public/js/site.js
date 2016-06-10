@@ -43,6 +43,28 @@ $(function () {
 
     });
 
+    $("body").delegate('.delete','click',function (e){
+        
+        e.preventDefault();
+        console.log("delete action");
+        var feedcomment_id = $(this).data('rowid');
+        console.log(feedcomment_id);
+
+                $.ajax({
+                    url:'/feedcomment/'+feedcomment_id+'/delete',
+                    type:'GET',
+                    success:function(data)
+                    {
+                        console.log(data);
+                         $("#comment"+feedcomment_id).remove();
+
+
+
+                    }
+             })
+    });
+
+
 
 // ajax for add feedback comment
 
@@ -67,12 +89,12 @@ $(function () {
                     {
                         console.log(data);
                       
-                        $(".comm"+feedback_id).append('<div class="uname" style="min-height: 0px; ">');
+                        $(".comm"+feedback_id).append('<div class="uname"  id="comment'+data[0]['id']+'" style="min-height: 0px; ">');
                         $(".comm"+feedback_id).append('<img src="' +data[2]+'" id="profile" style="width: 30px; height: 25px ; -webkit-border-radius: 30em;"/> ');
                         $(".comm"+feedback_id).append('<span><i class="fa fa-user" aria-hidden="true"></i></span>  by <a href="">' +data[1]+ '</a> ');
                         $(".comm"+feedback_id).append('<span>' +data[0]['content']+ '</span> ');
                         $(".comm"+feedback_id).append('<span><a  class="glyphicon glyphicon-pencil feed" id="runedit" data-rowid="'+data[0]['id']+'" href="" style="color: #19b5fe;"></a></span> ');
-                        $(".comm"+feedback_id).append('<span><a  class="glyphicon glyphicon-trash" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');
+                        $(".comm"+feedback_id).append('<span><a  class="glyphicon glyphicon-trash delete" data-rowid="'+data[0]['id']+'" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');
                         
                         $(".comm"+feedback_id).append('<form>');
                         $(".comm"+feedback_id).append('<input type="hidden" name="_token" value="{{ csrf_token() }}">');
@@ -114,16 +136,16 @@ $(function () {
                         $("#comment"+feedcomment_id).append ('<span><i class="fa fa-user" aria-hidden="true"></i></span>  by <a href="">' +data[1]+ '</a> ');
                         $("#comment"+feedcomment_id).append ('<span>' +data[0]['content']+ '</span> ');
                         $("#comment"+feedcomment_id).append ('<span><a id="feed" class="glyphicon glyphicon-pencil feed" href="" data-rowid="'+data[0]['id']+'" style="color: #19b5fe;"></a></span> ');
-                        $("#comment"+feedcomment_id).append ('<span><a  class="glyphicon glyphicon-trash" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');
+                        $("#comment"+feedcomment_id).append ('<span><a  class="glyphicon glyphicon-trash delete" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');
                         
                         $("#comment"+feedcomment_id).append ('<form>');
                         // $("#comment"+feedcomment_id).append ('<input type="hidden" name="_token" value="{{ csrf_token() }}">');
                         $("#comment"+feedcomment_id).append ('<input type="hidden" name="comment"  value="'+data[0]['id']+'" />');
                         $("#comment"+feedcomment_id).append ('<br>');
-                        $("#comment"+feedcomment_id).append ('<button class="btn btn-default comment_up" data-rowtok="'+_token+'" data-rowid="'+data[0]['id']+'" > <span class="glyphicon glyphicon-thumbs-up" id="'+data[0]['id']+'" aria-hidden="true">'+data[0]['no_ups']+'</span></button>');                               
-                        $("#comment"+feedcomment_id).append  ('</form></div><br><br>');            
+                        $("#comment"+feedcomment_id).append ('<button class="btn btn-default comment_up" data-rowtok="'+_token+'" data-rowid="'+data[0]['id']+'" > <span class="glyphicon glyphicon-thumbs-up" id="data'+data[0]['id']+'" aria-hidden="true">'+data[0]['no_ups']+'</span></button>');                               
+                        $("#comment"+feedcomment_id).append  ('</form></div><br><br><hr>');            
                         $("#comment"+feedcomment_id).append (''); 
-
+                        
                                                
                     }
                 });
