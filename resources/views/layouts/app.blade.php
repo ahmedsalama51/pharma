@@ -4,7 +4,6 @@
 <title>PHarmaMeter Social Network </title>
         <link href="{{ asset('css/bootstrap.css')}}" rel='stylesheet' type='text/css' /><link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css')}}">
         <script src="{{ asset('js/jquery.min.js')}}"></script>
-        <script src="{{ asset('js/site.js')}}"></script>
          <!-- Custom Theme files -->
         <link href="{{ asset('css/style.css')}}" rel='stylesheet' type='text/css' />
          <!-- Custom Theme files -->
