@@ -181,6 +181,7 @@
                                                          <label>{{$post->created_at->format('d M,Y')}}</label>
                                                             <label>{{$post->created_at->format('H:i A')}}</label>
                                                     </a>
+<<<<<<< HEAD
                                                     <span>
 
                                                     UPS (<i class="commentups" >{{$comment->commentups->count()}} </i>) 
@@ -201,13 +202,22 @@
                                                             <i class="fa fa-arrow-up clike" aria-hidden="true"></i> 
                                                         </a>
                                                     @endif
+=======
+
+                                                    <span>
+                                                        <i class="fa fa-arrow-up" aria-hidden="true"></i><a href="" data-toggle="modal" data-target=".edit{{$post->id}}"> Up</a>
+>>>>>>> 380eee9affb7f9a6c8506ef689e88ec7bb4c7811
                                                     </span>
                                                     @if(Auth::user()->id == $comment->user->id)
                                                     <span>
                                                         <i class="fa fa-pencil" aria-hidden="true"></i><a href="" class="editcomment" comment="{{$comment->id}}"> Edit</a>
                                                     </span>
                                                     <span>
+<<<<<<< HEAD
                                                         <i class="fa fa-trash" aria-hidden="true"></i><a href="/comment/delete/{{$comment->id}}"> Delete</a>
+=======
+                                                        <i class="fa fa-trash" aria-hidden="true"></i><a href="" data-toggle="modal" data-target=".edit{{$post->id}}"> Delete</a>
+>>>>>>> 380eee9affb7f9a6c8506ef689e88ec7bb4c7811
                                                     </span>
                                                     @endif
                                                 </div>
