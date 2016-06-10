@@ -46,14 +46,14 @@
 		//R&D routes ...
 		Route::get('features', 'FeaturesController@index');
 		Route::get('features/{feature}', 'FeaturesController@feature');
-		Route::post('feedbacks/add/{feature}', 'FeedbacksController@store');
-
+		Route::post('feedbacks/{feature}', 'FeedbacksController@store');
+		Route::get('feedbacks/delete/{feature}', 'FeedbacksController@destroy');
 		Route::post('feedcomment/{feedback}/add', 'FeedcommentsController@add');
 		Route::get('feedcomment/{comment}/delete', 'FeedcommentsController@delete');
+		Route::post('feedcomment/edit/{comment}', 'FeedcommentsController@update');
 		Route::post('/feedcomment/up','FeedcommentsController@up');
-
-
 		Route::get('feedbacks/up/{feature}', 'FeedbacksController@feedbackUp');
+		Route::get('feedbacks/down/{feature}', 'FeedbacksController@feedbackDown');
 		
 		//comment routes ...
 		Route::post('comment/add/{post}', 'CommentsController@store');
