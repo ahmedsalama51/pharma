@@ -2300,3 +2300,6 @@ textarea { border: none; }
 	.empty
 	{text-align: center;color:#aaa;}
 
+/* a i.fa-arrow-down{color:#2C3E50;} */
+a:hover i.fa-arrow-down{color:red;}
+a:hover i.fa-arrow-up{color:green;}

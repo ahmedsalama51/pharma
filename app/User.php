@@ -86,6 +86,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Postup::class,'user_id');
     }
+    public function commentups()
+    {
+        return $this->hasMany(Commentup::class,'user_id');
+    }
 
 
 

@@ -83,4 +83,32 @@ class CommentsController extends Controller
 			Redirect::to('/errors/404');
 		}
 	}//end of destroy action
+	public function destroy($id){
+		$comment = comment::find($id);
+		if (Auth::user() && Auth::user()->id == $comment->user_id)
+		{
+			if(sizeof($comment) > 0)
+			{
+				$comment->user->personal->no_comments -=1;
+				$comment->user->personal->save();
+				$comment->delete();
+				$comment->user->personal->no_interactions -=1;
+				$comment->user->personal->perentage =
+					$comment->user->personal->no_interactions / ($comment->user->personal->no_posts + $comment->user->personal->no_comments);
+				$comment->user->personal->save();
+				Session::put('done',  'comment deleted succssufully..');
+				return Redirect::back();
+			}
+			else
+			{
+				Session::put('error',"something went wrong, please try again after while..");
+				Redirect::to('/errors/404');
+			}
+		}
+		else
+		{
+			Session::put('error',  "You are not authorize to be here, sorry for disapoint you, we are SECUIRE!!!");	
+			Redirect::to('/errors/404');
+		}
+	}//end of destroy action
 }

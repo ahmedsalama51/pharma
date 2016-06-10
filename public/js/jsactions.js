@@ -251,6 +251,43 @@ $('.postUp').on('click', function(event) {
           }
       })//end of ajax action
   });//end of comment submit
+/************************************* comment up ****************************************/
+$('.commentUp').on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      var box = $(this).parent();
+      var comment_id = $(this).attr('comment');
+      var up_Url = '/commentup/add/'+comment_id;
+      var token =  $(this).parent().find('.up_token').val();
+      var formData = {
+          '_token': token,
+          'comment_id':comment_id,
+      }
+      // console.log(formData)
+      $.ajax({
+          url: up_Url,
+          type: 'post',
+          data: formData,
+          success:function(response){
+              if(response['like'] == "liked")
+              {
+               console.log('ok')
+               box.find('.commentups').html(response['count']);
+               box.find('.clike').removeClass('fa-arrow-up').addClass('fa-arrow-down');
+              }
+              else if(response['like'] == "duplicate")
+              { 
+                console.log('nok')
+                box.find('.commentups').html(response['count']);
+                box.find('.clike').removeClass('fa-arrow-down').addClass('fa-arrow-up');
+                 
+              }              
+          },
+          error:function(response){
+              console.log(response);
+          }
+      })//end of ajax action
+  });//end of comment submit
 /************************************ edit post actions ******************************************/
 $('.updatepost').on('click', function(event) {
       event.preventDefault();
