@@ -120,6 +120,7 @@ $('.comment').on('click', function(event) {
               if(response['created_at'])
               {
                   console.log(response);
+               div.parent().parent().parent().parent().find('.commentsCount').html(response['count']);
                 var array = [];
                array.push('<div class="commentHolder ">');
                array.push('<div class="leftSection pull-left col-md-1"><a href="/users/'+user_id+'"><img src="'+user_image+'" alt=""></a></div>');
@@ -132,6 +133,68 @@ $('.comment').on('click', function(event) {
                array.push('<span><i class="fa fa-trash" aria-hidden="true"></i><a href="" "> Delete</a></span>');
                array.push('</div></div>');
                div.hide();
+               $(array.join('')).insertAfter(curruntDiv);
+               box.val('');
+              }
+              else
+              {
+                console.log('response');
+                box.val('Sorry, '+response['content']);
+                box.addClass('alert alert-danger');
+                setTimeout(function(){box.removeClass('alert alert-danger').val('');},2000)
+                 
+              }
+              
+          },
+          error:function(response){
+              console.log(response);
+          }
+      })//end of ajax action
+  });//end of comment submit
+/***************************************** comment on single *************************/
+$('.commentsingle').on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      div = $(this).parent().parent().parent().prev().prev().prev();
+      curruntDiv = $(this).parent().parent().parent().prev();
+      // maindiv = $(this).parent().parent().parent().parent()
+      var user_name = $(this).parent().find('.user').attr('user');
+      var user_image = $(this).parent().find('.user').attr('src');
+      var user_id = $(this).parent().find('.user').attr('id');
+      var box = $(this).parent().find('.comment_content');
+      var post_id = $(this).parent().find('.comment_content').attr('post'); 
+      var content = $(this).parent().find('.comment_content').val();
+      var comment_Url = '/comment/add/'+post_id;
+      var token =  $(this).parent().find('.comment_token').val();
+      var formData = {
+          '_token': token,
+          'post_id':post_id,
+          'content':content
+      }
+      // console.log(formData)
+      
+      
+      $.ajax({
+          url: comment_Url,
+          type: 'post',
+          data: formData,
+          success:function(response){
+              if(response['created_at'])
+              {
+                  console.log(response);
+               div.parent().parent().parent().parent().find('.commentsCount').html(response['count']);
+                var array = [];
+               array.push('<div class="commentHolder ">');
+               array.push('<div class="leftSection pull-left col-md-1"><a href="/users/'+user_id+'"><img src="'+user_image+'" alt=""></a></div>');
+               array.push('<div class="pull-left rightSide col-md-11"><a class="col-md-12 pull-left" href="'+user_id+'}}"> <p>'+user_name+'</p></a>');
+               array.push('<p class="col-md-12 pull-left">'+response['content']+'</p></div>');
+               array.push('<div class="commentAction col-md-12"><a href="/posts/'+response['post_id']+'">');
+               array.push('<label>'+response['created_at']+'</label></a>');
+               array.push('<span><i class="fa fa-heart" aria-hidden="true"></i><a href="" "> Up</a></span>');
+               array.push('<span><i class="fa fa-pencil" aria-hidden="true"></i><a href="" "> Edit</a></span>');
+               array.push('<span><i class="fa fa-trash" aria-hidden="true"></i><a href="" "> Delete</a></span>');
+               array.push('</div></div>');
+               // div.hide();
                $(array.join('')).insertAfter(curruntDiv);
                box.val('');
               }

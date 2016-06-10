@@ -41,8 +41,7 @@
                         </div>
 
                     </div>
-                    @if(isset($posts) && sizeof($posts) >0)
-                        @foreach($posts as $post)
+                    @if(isset($post) && sizeof($post) >0)
                             <div class="blog-artical">
                             <div class="blog-artical-basicinfo">
                                 <ul>
@@ -161,8 +160,8 @@
                                     <p>{{ $post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
                                 </div>
                                 <div class="blog-artical-info-comment">
-                                    @if(sizeof($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get())>0)
-                                        @foreach($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get()->reverse() as $comment )
+                                    @if(sizeof($post->comments) >0)
+                                        @foreach($post->comments()->orderBy('created_at', 'desc')->orderBy('created_at', 'asc')->get()->reverse() as $comment )
                                             <div class="commentHolder ">
                                                 <div class="leftSection pull-left col-md-1">
                                                     <a href="/users/{{$comment->user->id}}">
@@ -215,7 +214,7 @@
                                                         <textarea  class="col-md-10 col-sm-10 col-xs-7 comment_content" name='content' post={{$post->id}} placeholder="add new comment ..."></textarea>
                                                     </div>
                                                     <hr>   
-                                                    <input  class='col-xs-2 pull-right btn btn-sm btn-primary comment' type='submit' name='Add' value="Comment"/>
+                                                    <input  class='col-xs-2 pull-right btn btn-sm btn-primary commentsingle' type='submit' name='Add' value="Comment"/>
                                             </div>                                    
                                            </div>
                                         <!-- </form> -->
@@ -225,35 +224,22 @@
                             <div class="clearfix"> </div>
                         </div>
                         <div class="hr"></div>
-
-                        @endforeach
-                    <div class="blog-pagenat">
-                        <ul>
-                            <li><a class="frist" href="#"> <span> </span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a class="last" href="#"> <span> </span></a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
                 </div>
                     @else
                     <div class="blog-artical">
-                            <h4 class="h_nopost"><i>-- There is no posts yet -- </i></h4>
+                            <h4 class="h_nopost"><i>-- There is no post yet -- </i></h4>
                             <p class="p_nopost">you need to follow some frinds first , here is suggestion</p>
                     
                        
-                       @foreach( session('top_to_follow') as $follow)
-                           <div class="uname col-md-3 col-sm-3 col-xs-3">
+                       {{-- @foreach( session('top_to_follow') as $follow) --}}
+                          {{--  <div class="uname col-md-3 col-sm-3 col-xs-3">
                                <img src="{{$follow->image}}" id="profile"/>
                                 <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                 <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                 <input type="hidden" class="token" value="{{ csrf_token() }}">
 
-                           </div>
-                        @endforeach
+                           </div> --}}
+                        {{-- @endforeach --}}
 
                     </div>
                 </div>

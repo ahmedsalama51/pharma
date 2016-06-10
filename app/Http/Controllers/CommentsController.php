@@ -43,6 +43,7 @@ class CommentsController extends Controller
 			$comment->content = $request->content;
 			$comment->created_at = Carbon::now();
 			$comment->save();
+			$comment->count = Post::find($post_id)->comments->count();
 			/*add the interavtive values*/
 			$user->personal->no_comments +=1; // currunt user num of comment increase
 			$user->personal->save();
@@ -51,6 +52,7 @@ class CommentsController extends Controller
 					$post->user->personal->no_interactions / ($post->user->personal->no_posts + $post->user->personal->no_comments);
 			$post->user->personal->save();
 			// $done = 'commentd succssufully';
+			$comment->count = $comment->post->comments->count();
 			return $comment;
 			    // return Redirect::to('/')->with('done');
 		}
