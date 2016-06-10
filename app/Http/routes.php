@@ -58,9 +58,10 @@
 		//comment routes ...
 		Route::post('comment/add/{post}', 'CommentsController@store');
 		Route::put('comment/edit/{comment}', 'CommentsController@append');
-		Route::get('delete/{comment}', 'CommentsController@destroy');
-		//postUP routes ...
+		Route::get('comment/delete/{comment}', 'CommentsController@destroy');
+		//UPs routes ...
 		Route::post('/postup/add/{post}', 'PostupsController@store');
+		Route::post('/commentup/add/{comment}', 'CommentupsController@store');
 
 
 

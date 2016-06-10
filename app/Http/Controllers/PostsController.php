@@ -26,8 +26,8 @@ class PostsController extends Controller
 			// increase view by 1 
 			// $post ->views_num +=1 ;
 			// $post ->save();
-			// return view ('pages.single',compact('post'));
-			return $post;
+			return view ('post.single',compact('post'));
+			//return $post;
 		}
 		else
 		{
