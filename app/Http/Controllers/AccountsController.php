@@ -72,7 +72,7 @@ class AccountsController extends Controller
     public function rejected()
     {
     	$requests = Account::where('is_active','1')->get();
-        return view('requests.index', compact('requests'));
+        return view('requests.rejected', compact('requests'));
     }
 
     public function accepted()
@@ -103,8 +103,22 @@ class AccountsController extends Controller
     			$message = 'The Request Has Been Rejected Succesfully';
     		else
     			$message = 'The Request Has not been Rejected ' ;
-    		$requests = Account::where('is_active','0')->get();
-    		return view('requests.index', compact('requests','message'));
+    		$requests = Account::where('is_active','1')->get();
+            return view('requests.rejected', compact('requests','message'));
     	}
+    }
+
+    public function unreject($id='')
+    {
+        if($id!=''){
+            $request = Account::findOrFail($id);
+            $request->is_active = 0;
+            if($request->update())
+                $message = 'The Request Has Been Unrejected Succesfully';
+            else
+                $message = 'The Request Has not been Unejected ' ;
+            $requests = Account::where('is_active','1')->get();
+            return view('requests.rejected', compact('requests'));
+        }
     }
 }

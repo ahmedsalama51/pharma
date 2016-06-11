@@ -40,10 +40,17 @@
     <thead>
     @if($from == 'all')
     <a href="/admin/users/banned" class="btn btn-danger">Banned Users</a>
+    <a href="/admin/users/req" class="btn btn-warning">Users with Req</a>
     @elseif($from == 'banned')
     <a href="/admin" class="btn btn-info">All Users</a>
+    <a href="/admin/users/req" class="btn btn-warning pull-right">Users with Req</a>
+    @elseif($from == 'req')
+    <a href="/admin" class="btn btn-info">All Users</a>
+    <a href="/admin/users/banned" class="btn btn-danger pull-right">Banned Users</a>
     @endif
+    @if($from=='all')
     <a href="/admin/users/generate" class="btn btn-primary  pull-right"><b>+</b> Add new user</a>
+    @endif
         <tr>
             <th>ID</th>
             <th>Email</th>
