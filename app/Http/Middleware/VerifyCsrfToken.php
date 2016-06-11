@@ -15,15 +15,4 @@ class VerifyCsrfToken extends BaseVerifier
         'feedcomment/{feedback}/add',
     ];
 
-    /*public function handle($request, Closure $next)
-    {
-        $regex = '#' . implode('|', $this->except) . '#';
-
-        if ($this->isReading($request) || $this->tokensMatch($request) || preg_match($regex, $request->path()))
-        {
-            return $this->addCookieToResponse($request, $next($request));
-        }
-
-        throw new TokenMismatchException;
-    }*/
 }

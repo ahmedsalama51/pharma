@@ -13,8 +13,8 @@
           addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
          </script>
          <!-- webfonts -->
-         <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
-          <!-- webfonts -->
+<!--          <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+ -->          <!-- webfonts -->
 
     
 </head>
