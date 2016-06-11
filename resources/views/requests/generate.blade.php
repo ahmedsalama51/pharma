@@ -76,7 +76,7 @@
                                   <div class="col-md-6">
                                  @if(isset($request))
                                       @if($request['type'] )
-                                        <input type="text" value="{{$request['type']}}"></input>
+                                        <input type="disabled" value="{{$request['type']}}"></input>
                                       @else
                                         <select  class="form-control" data-style="btn-primary" id="type" name="type">
                                      

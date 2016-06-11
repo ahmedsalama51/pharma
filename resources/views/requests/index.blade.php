@@ -32,7 +32,6 @@
                 <td>{{$request->certificate}}</td>
                 <td class="text-center"> <a href="/admin/requests/accept/{{$request->id}}" class="btn btn-sm btn-success"><span class='glyphicon glyphicon-ok'></span>Accept</a><a class='btn btn-info btn-sm btn-danger' href="/admin/requests/reject/{{$request->id}}"><span class="glyphicon glyphicon-remove"></span>Reject</a></td>
             </tr>
-            {{var_dump($request)}}
     @endforeach
     </table>
     </div>
