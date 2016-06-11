@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{bcrypt(123456)}}
+
 @if(isset($message))
 <div style="text-align:center" class="alert alert-success">
 {{$message}}

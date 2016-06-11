@@ -102,6 +102,9 @@ class AdminController extends Controller
 						$id_number = 'null'.uniqid();
 					} while (User::where('id_number', '=', $id_number)->exists());
 				}
+				if ($request->account_id) {
+					$user->request_id = $request->account_id;
+				}
 				$user->id_number = $id_number;
 				$user->password = bcrypt($request->password);
 				$user->type = $request->type;
@@ -126,6 +129,13 @@ class AdminController extends Controller
     {
       $users = User::onlyTrashed()->get();
       $from ='banned';
+      return view('admin.dashboard', compact('users','from'));
+    }
+
+    public function requested()
+    {
+      $users = User::withTrashed()->where('request_id','!=','null')->get();
+      $from ='req';
       return view('admin.dashboard', compact('users','from'));
     }
 

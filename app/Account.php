@@ -15,4 +15,10 @@ class Account extends Model
 
 	use SoftDeletes;
     protected $dates = ['deleted_at'];
+
+    public function user()
+    {
+        return $this->hasOne('App\User','request_id');
+    }
+
 }

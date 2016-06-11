@@ -90,9 +90,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/users/generate', 'AdminController@generate');
     Route::post('/admin/users/generate', 'AdminController@generate');
     Route::get('/admin/users/banned', 'AdminController@banned');
+    Route::get('/admin/users/req', 'AdminController@requested');
 
     Route::get('/admin/requests/accept/{id}', 'AccountsController@accept');
     Route::get('/admin/requests/reject/{id}', 'AccountsController@reject');
+    Route::get('/admin/requests/unreject/{id}', 'AccountsController@unreject');
 
     
     Route::get('/requests', 'AccountsController@requests');

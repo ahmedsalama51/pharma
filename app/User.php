@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Request ;
+use App\Account ;
 use Illuminate\Database\Eloquent\SoftDeletes;
 // use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 // use Illuminate\Auth\Authenticatable;
@@ -34,7 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type',
     ];
 
     /**
@@ -56,10 +57,11 @@ class User extends Authenticatable
     } 
 
 
-    public function request()
+    public function account()
     {
-        return $this->hasOne('App\Request');
+        return $this->belongsTo(Account::class,'request_id');
     }
+    
     public function personal()
     {
         return $this->hasOne('App\Personal_data','user_id');
