@@ -21,11 +21,11 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
+Route::auth();
  Route::group(['middleware' => ['web']], function () {
 
 
-		Route::auth();
+		#Route::auth();
 		Route::get('/', 'HomeController@index');
 		//post routes ...
 		Route::get('posts/{post}', 'PostsController@show');
