@@ -59,6 +59,12 @@ $(function () {
                 console.log(feedback_id);
                 console.log(response['feedback_id']);
                 $('.ups'+feedback_id).html(response['count']+'ups');
+               /* if (response['count_diff']<0) {
+                    $(".feedup").html('Up');
+                }else{
+                    $(".feedup").html('Down');
+                }*/
+                
             },
             error:function(response){
                 console.log(response);
