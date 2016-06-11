@@ -64,7 +64,6 @@ class FeaturesController extends Controller
 		//$feature = Feature::where('id',$id )->first();
 		//$feedbacks = Feedback::where('feature_id','=',$id )->get();
 		// var_dump($feedbacks);
-
 		$feature = DB::table('features')->where('id',$id )->first();
 		#$feedbacks = DB::table('feedbacks')->where('feature_id',$id )->get();
 		$feedbacks = Feedback::where('feature_id',$id )->get();
