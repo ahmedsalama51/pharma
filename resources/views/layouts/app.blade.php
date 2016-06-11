@@ -4,7 +4,6 @@
 <title>PHarmaMeter Social Network </title>
         <link href="{{ asset('css/bootstrap.css')}}" rel='stylesheet' type='text/css' /><link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css')}}">
         <script src="{{ asset('js/jquery.min.js')}}"></script>
-        <script src="{{ asset('js/site.js')}}"></script>
          <!-- Custom Theme files -->
         <link href="{{ asset('css/style.css')}}" rel='stylesheet' type='text/css' />
          <!-- Custom Theme files -->
@@ -14,8 +13,13 @@
           addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
          </script>
          <!-- webfonts -->
+<<<<<<< HEAD
         {{--  <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'> --}}
           <!-- webfonts -->
+=======
+<!--          <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+ -->          <!-- webfonts -->
+>>>>>>> e838bef40e1a09670255b3c79412328a9150abb1
 
     
 </head>
@@ -44,12 +48,13 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a>
                             </li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/register') }}">Request Account</a></li>
                         @else
                             <li><a href="/users/{{ Auth::user()->id }}" >
                                 <img width="30px" height="20px" src="{{ Auth::user()->personal->image }}" alt=""> {{ Auth::user()->name }} </a>
                             @if(Auth::user()->isAdmin())
-                            <li><a href="#">Dashboard</a>
+                            <li><a href="/admin">Dashboard</a>
+                            <li><a href="/requests">Requests</a>
                             @endif
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                
@@ -143,7 +148,7 @@
                                        @foreach( session('top_users_to_follow') as $follow)
                                        <div class="uname ">
                                            <img src="{{$follow->image}}" id="profile"/>
-                                            <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
+                                            <span > <a href="/users/follower/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                             <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                             <input type="hidden" class="token" value="{{ csrf_token() }}">
 
@@ -163,7 +168,7 @@
                                    @foreach( session('top_interactive_to_follow') as $follow)
                                    <div class="uname ">
                                        <img src="{{ $follow->image}}" id="profile"/>
-                                        <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
+                                        <span > <a href="/users/follower/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                          <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                         <input type="hidden" class="token" value="{{ csrf_token() }}">
 
@@ -262,4 +267,7 @@
     <script src="{{asset('js/jquery.min.js')}}" ></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/jsactions.js')}}"></script>
+    <script src="{{asset('js/feedbackup.js')}}"></script>
+    <script src="{{ asset('js/site.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="{{ asset('js/showpassword.js')}}"></script>

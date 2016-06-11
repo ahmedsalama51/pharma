@@ -17,6 +17,10 @@ use App\User;
 
 class FeaturesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
     	 
@@ -54,19 +58,18 @@ class FeaturesController extends Controller
 	}
 
 	public function feature($id){
-
+		$user = Auth::user();
 		// $feature = DB::table('features')->where('id',$id )->first();
 		// $feedbacks = DB::table('feedbacks')->where('feature_id',$id )->get();
-		$feature = Feature::where('id',$id )->first();
-		$feedbacks = Feedback::where('feature_id','=',$id )->get();
+		//$feature = Feature::where('id',$id )->first();
+		//$feedbacks = Feedback::where('feature_id','=',$id )->get();
 		// var_dump($feedbacks);
 
 		$feature = DB::table('features')->where('id',$id )->first();
 		#$feedbacks = DB::table('feedbacks')->where('feature_id',$id )->get();
 		$feedbacks = Feedback::where('feature_id',$id )->get();
-
-
-		return view('features.feature',compact('feature','feedbacks')); 
+		$exist = Feedback::where('feature_id',$id)->where('user_id',$user->id)->pluck('id');
+		return view('features.feature',compact('feature','feedbacks','exist')); 
 
 	}
 }

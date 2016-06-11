@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes; //<--- use the softdelete traits
 class Feedback extends Model
 {
+      use SoftDeletes; //<--- use the softdelete traits
+ 
+    protected $dates = ['deleted_at']; //<--- new field to be added in your table
      /**
      * The attributes that are mass assignable.
      *
@@ -26,7 +29,7 @@ class Feedback extends Model
     /*Relation between tables */
 /*    public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }*/
 
     public function user()

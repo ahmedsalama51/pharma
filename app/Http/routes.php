@@ -21,11 +21,11 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
+Route::auth();
  Route::group(['middleware' => ['web']], function () {
 
 
-		Route::auth();
+		#Route::auth();
 		Route::get('/', 'HomeController@index');
 		//post routes ...
 		Route::get('posts/{post}', 'PostsController@show');
@@ -35,6 +35,7 @@
 		//user routes ...
 		Route::get('/users/index', 'UsersController@index');
 		Route::get('/users/{User}', 'UsersController@profile');
+		Route::get('/users/follower/{User}', 'UsersController@follower');
 		Route::get('/users/{User}/profiledetails', 'UsersController@details');
 		Route::get('/users/{User}/editprofile', 'UsersController@edit');
 		Route::patch('/users/{User}/update', 'UsersController@update');
@@ -46,14 +47,16 @@
 		//R&D routes ...
 		Route::get('features', 'FeaturesController@index');
 		Route::get('features/{feature}', 'FeaturesController@feature');
-		Route::post('feedbacks/add/{feature}', 'FeedbacksController@store');
+		Route::post('feedbacks/{feature}', 'FeedbacksController@store');
+		Route::get('feedbacks/delete/{feature}', 'FeedbacksController@destroy');
 
 		Route::post('feedcomment/{feedback}/add', 'FeedcommentsController@add');
 		Route::get('feedcomment/{comment}/delete', 'FeedcommentsController@delete');
+		Route::post('feedcomment/edit/{comment}', 'FeedcommentsController@update');
 		Route::post('/feedcomment/up','FeedcommentsController@up');
-
-
+		
 		Route::get('feedbacks/up/{feature}', 'FeedbacksController@feedbackUp');
+		Route::get('feedbacks/down/{feature}', 'FeedbacksController@feedbackDown');
 		
 		//comment routes ...
 		Route::post('comment/add/{post}', 'CommentsController@store');
@@ -62,12 +65,16 @@
 		//UPs routes ...
 		Route::post('/postup/add/{post}', 'PostupsController@store');
 		Route::post('/commentup/add/{comment}', 'CommentupsController@store');
+<<<<<<< HEAD
 
 		//search routes ...
 		Route::post('/search/', 'HomeController@search');
+=======
+>>>>>>> e838bef40e1a09670255b3c79412328a9150abb1
 
 
-
+		Route::post('/request', 'AccountsController@store');
+		Route::get('/request', 'AccountsController@store');
 
 
 
@@ -82,6 +89,23 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('features/add', 'FeaturesController@add');
     //url -> /features/{{$feature->id}}/delete
 	Route::get('features/{feature}/delete', 'FeaturesController@delete');
+
+	Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/users/delete/{id}', 'AdminController@delete');
+    Route::get('/admin/users/restore/{id}', 'AdminController@restore');
+    Route::get('/admin/users/generate', 'AdminController@generate');
+    Route::post('/admin/users/generate', 'AdminController@generate');
+    Route::get('/admin/users/banned', 'AdminController@banned');
+    Route::get('/admin/users/req', 'AdminController@requested');
+
+    Route::get('/admin/requests/accept/{id}', 'AccountsController@accept');
+    Route::get('/admin/requests/reject/{id}', 'AccountsController@reject');
+    Route::get('/admin/requests/unreject/{id}', 'AccountsController@unreject');
+
+    
+    Route::get('/requests', 'AccountsController@requests');
+    Route::get('/requests/accepted', 'AccountsController@accepted');
+    Route::get('/requests/rejected', 'AccountsController@rejected');
 
 
 });
