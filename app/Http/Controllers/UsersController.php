@@ -23,18 +23,22 @@ class UsersController extends Controller
         if($id ==  Auth::user()->id)
         {
             $id = Auth::user()->id;
-            $profile = DB::table('personal_datas')->where('id',$id )->first();
+            $profile = DB::table('personal_datas')->where('user_id',$id )->first();
             $posts =   Post::where('user_id','=',$id )->orderBy('created_at','DESC')->get();
             // foreach ($posts as $value) {
             //     echo $value['content'];
             // }
+            // var_dump( $profile);
             return view('users.profile',compact('profile','posts')); 
 
         }
         else
         {
-            $profile = DB::table('personal_datas')->where('id',$id )->first();
-            $user = DB::table('users')->where('id',$profile->user_id )->first();
+            // $profile = DB::table('personal_datas')->where('id',$id )->first();
+            // $user = DB::table('users')->where('id',$profile->user_id )->first();
+            $user = DB::table('users')->where('id',$id )->first();
+            // var_dump($user);
+            $profile = DB::table('personal_datas')->where('user_id',$user->id )->first();
             $posts = Post::where('user_id','=',$user->id )->orderBy('created_at','DESC')->get();
 
             return view('users.other',compact('user','profile','posts'));  
@@ -54,6 +58,18 @@ class UsersController extends Controller
         
         
         // var_dump($profile);
+    }
+
+    public function follower($id ,User $user)
+    {
+       // if($id !=  Auth::user()->id)
+        // {
+            $profile = DB::table('personal_datas')->where('id',$id )->first();
+            $user = DB::table('users')->where('id',$profile->user_id )->first();
+            
+            $posts =   Post::where('user_id','=',$id )->orderBy('created_at','DESC')->get();
+           return view('users.other',compact('user','profile','posts')); 
+        // }
     }
 
     public function details($id)
