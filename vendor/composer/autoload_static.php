@@ -529,6 +529,7 @@ class ComposerStaticInit61d673b6c98df63d7274d79af2d0b627
         'Cartalyst\\Sentry\\Users\\UserNotFoundException' => __DIR__ . '/..' . '/cartalyst/sentry/src/Cartalyst/Sentry/Users/Exceptions.php',
         'Cartalyst\\Sentry\\Users\\WrongPasswordException' => __DIR__ . '/..' . '/cartalyst/sentry/src/Cartalyst/Sentry/Users/Exceptions.php',
         'CreateAdminsTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_30_180139_create_admins_table.php',
+        'CreateCommentupsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_10_204242_create_commentups_table.php',
         'CreateFeaturesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_163458_create_features_table.php',
         'CreateFeatureupsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_164218_create_featureups_table.php',
         'CreateFeedbacksTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_163551_create_feedbacks_table.php',

@@ -9,6 +9,7 @@ use Auth;
 use App\Post;
 use App\Follower;
 use App\User;
+use App\Comment;
 use App\Personal_data;
 use View;
 use Session;
@@ -52,6 +53,23 @@ class HomeController extends Controller
         
         $posts = Post::whereIn('user_id', $followers)->orWhere('user_id',$user)->orderBy('created_at','DESC')->get();
         return view('index',compact('posts'));
+
+    }
+    public function search(Request $request)
+    {
+        
+        $users = User::where('email','LIKE', '%' .$request['search'].'%')
+        ->orWhere('name','LIKE', '%' .$request['search'].'%')
+        ->orWhere('id_number','LIKE', '%' .$request['search'].'%')->get();
+
+        $posts = Post::where('content','LIKE', '%' .$request['search'].'%')
+        ->orWhere('created_at','LIKE', '%' .$request['search'].'%')
+        ->get();
+
+        $comments = Comment::where('content','LIKE', '%' .$request['search'].'%')
+        ->orWhere('created_at','LIKE', '%' .$request['search'].'%')
+        ->get();
+        return view('search',compact('users','posts','comments'));
 
     }
 }

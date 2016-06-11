@@ -41,8 +41,7 @@
                         </div>
 
                     </div>
-                    @if(isset($posts) && sizeof($posts) >0)
-                        @foreach($posts as $post)
+                    @if(isset($post) && sizeof($post) >0)
                             <div class="blog-artical">
                             <div class="blog-artical-basicinfo">
                                 <ul>
@@ -129,61 +128,59 @@
                                                      <input  class='btn btn-sm btn-primary updatepost' type='submit' name='Add' value="Update"/>
                                                     
                                                 </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                        </li>
-                                         <li>
-                                            <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="" data-toggle="modal" data-target=".delete{{$post->id}}">Delete</a>
-                                            <div class="modal alert alret-warning fade delete{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Warrning</h4>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                    Are you sure you want delete this post... <br> all comments and activites will be also deleted !!!
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                                    <a class="btn btn-md btn-primary" href="/delete/{{$post->id}}">Delete</a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                        </li>
-                                        @endif
-                                        <div class="clearfix"> </div>
-                                    </ul>
-                                </div>
-                                <div class="blog-artical-info-text box{{$post->id}}">
-                                    <p>{{ $post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
-                                </div>
-                                <div class="blog-artical-info-comment">
-                                    @if(sizeof($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get())>0)
-                                        @foreach($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get()->reverse() as $comment )
-                                            <div class="commentHolder ">
-                                                <div class="leftSection pull-left col-md-1">
-                                                    <a href="/users/{{$comment->user->id}}">
-                                                        <img src="{{$comment->user->personal->image }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="pull-left rightSide col-md-11">
-                                                    <a class="col-md-12 pull-left" href="/users/{{$comment->user->id}}"> <p>{{$comment->user->name}}</p>
-                                                    </a>
-                                                    <p class="col-md-12 pull-left commentcontent">{{$comment->content}}</p>
-                                                    <input type="hidden" class="editcomment_token" value="{{ csrf_token() }}">
-                                                    <textarea class="editcommentbox hide col-md-10 pull-left commentcontent">{{$comment->content}}</textarea>
-                                                    <input type="submit" class=" hide ok pull-right btn btn-sm btn-primary" value="update">
-                                                </div>
-                                                <div class="commentAction col-md-12">   
-                                                    <a href="/posts/{{$post->id}}">
-                                                         <label>{{$post->created_at->format('d M,Y')}}</label>
-                                                            <label>{{$post->created_at->format('H:i A')}}</label>
-                                                    </a>
-                                                    
-                                                    <span>
+</div>                                               </div>
+</div>                                         </li>
+<li>                                             <span><i class="fa fa-trash"
+aria-hidden="true"></i></span><a href="" data-toggle="modal" data-
+target=".delete{{$post->id}}">Delete</a>
+<div class="modal alert alret-warning fade delete{{$post->id}}" tabindex="-1"
+role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-
+label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Warrning</h4>
+</div>                                                   <div class="modal-
+body">                                                     Are you sure you
+want delete this post... <br> all comments and activites will be also deleted
+!!!                                                   </div>
+<div class="modal-footer">
+<button type="button" class="btn btn-sm btn-default" data-
+dismiss="modal">Close</button>
+<a class="btn btn-md btn-primary" href="/delete/{{$post->id}}">Delete</a>
+</div>                                                 </div>
+</div>                                             </div>
+</li>                                         @endif
+<div class="clearfix"> </div>                                     </ul>
+</div>                                 <div class="blog-artical-info-text
+box{{$post->id}}">                                     <p>{{
+$post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
+</div>                                 <div class="blog-artical-info-comment">
+@if(sizeof($post->comments) >0)
+@foreach($post->comments()->orderBy('created_at',
+'desc')->orderBy('created_at', 'asc')->get()->reverse() as $comment )
+<div class="commentHolder ">
+<div class="leftSection pull-left col-md-1">
+<a href="/users/{{$comment->user->id}}">
+<img src="{{$comment->user->personal->image }}" alt="">
+</a>                                                 </div>
+<div class="pull-left rightSide col-md-11">
+<a class="col-md-12 pull-left" href="/users/{{$comment->user->id}}">
+<p>{{$comment->user->name}}</p>
+</a>                                                     <p class="col-md-12
+pull-left commentcontent">{{$comment->content}}</p>
+<input type="hidden" class="editcomment_token" value="{{ csrf_token() }}">
+<textarea class="editcommentbox hide col-md-10 pull-left
+commentcontent">{{$comment->content}}</textarea>
+<input type="submit" class=" hide ok pull-right btn btn-sm btn-primary"
+value="update">                                                 </div>
+<div class="commentAction col-md-12">
+<a href="/posts/{{$post->id}}">
+<label>{{$post->created_at->format('d M,Y')}}</label>
+<label>{{$post->created_at->format('H:i A')}}</label>
+</a>                                                     <span>
+
                                                     UPS (<i class="commentups" >{{$comment->commentups->count()}} </i>) 
                                                     <?php $ccount = 'no';?>
                                                     @foreach (Auth::user()->commentups as $key => $commentup)
@@ -208,7 +205,7 @@
                                                         <i class="fa fa-pencil" aria-hidden="true"></i><a href="" class="editcomment" comment="{{$comment->id}}"> Edit</a>
                                                     </span>
                                                     <span>
-                                                         <i class="fa fa-trash" aria-hidden="true"></i><a href="/comment/delete/{{$comment->id}}"> Delete</a>
+                                                        <i class="fa fa-trash" aria-hidden="true"></i><a href="/comment/delete/{{$comment->id}}"> Delete</a>
                                                     </span>
                                                     @endif
                                                 </div>
@@ -232,7 +229,7 @@
                                                         <textarea  class="col-md-10 col-sm-10 col-xs-7 comment_content" name='content' post={{$post->id}} placeholder="add new comment ..."></textarea>
                                                     </div>
                                                     <hr>   
-                                                    <input  class='col-xs-2 pull-right btn btn-sm btn-primary comment' type='submit' name='Add' value="Comment"/>
+                                                    <input  class='col-xs-2 pull-right btn btn-sm btn-primary commentsingle' type='submit' name='Add' value="Comment"/>
                                             </div>                                    
                                            </div>
                                         <!-- </form> -->
@@ -242,35 +239,22 @@
                             <div class="clearfix"> </div>
                         </div>
                         <div class="hr"></div>
-
-                        @endforeach
-                    <div class="blog-pagenat">
-                        <ul>
-                            <li><a class="frist" href="#"> <span> </span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a class="last" href="#"> <span> </span></a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
                 </div>
                     @else
                     <div class="blog-artical">
-                            <h4 class="h_nopost"><i>-- There is no posts yet -- </i></h4>
+                            <h4 class="h_nopost"><i>-- There is no post yet -- </i></h4>
                             <p class="p_nopost">you need to follow some frinds first , here is suggestion</p>
                     
                        
-                       @foreach( session('top_to_follow') as $follow)
-                           <div class="uname col-md-3 col-sm-3 col-xs-3">
+                       {{-- @foreach( session('top_to_follow') as $follow) --}}
+                          {{--  <div class="uname col-md-3 col-sm-3 col-xs-3">
                                <img src="{{$follow->image}}" id="profile"/>
                                 <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                 <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                 <input type="hidden" class="token" value="{{ csrf_token() }}">
 
-                           </div>
-                        @endforeach
+                           </div> --}}
+                        {{-- @endforeach --}}
 
                     </div>
                 </div>
