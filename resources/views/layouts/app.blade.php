@@ -13,8 +13,13 @@
           addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
          </script>
          <!-- webfonts -->
+<<<<<<< HEAD
+        {{--  <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'> --}}
+          <!-- webfonts -->
+=======
 <!--          <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
  -->          <!-- webfonts -->
+>>>>>>> e838bef40e1a09670255b3c79412328a9150abb1
 
     
 </head>
@@ -121,8 +126,9 @@
                 <div class="twitter-weights">
                     <div class="blog-content-right">
                         <div class="b-search">
-                            <form>
-                                <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <form action="/search/" method="post">
+                                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                <input type="text" name="search" placeholder='Search' data-toggle="tooltip" data-placement="left" title="Serach for any member by his name or email or even his ID or post by it's content or comment by it's content, you can also find your target by it's date ex: 2016-6-1">
                                 <input type="submit" value="">
 
                             </form>
@@ -142,7 +148,7 @@
                                        @foreach( session('top_users_to_follow') as $follow)
                                        <div class="uname ">
                                            <img src="{{$follow->image}}" id="profile"/>
-                                            <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
+                                            <span > <a href="/users/follower/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                             <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                             <input type="hidden" class="token" value="{{ csrf_token() }}">
 
@@ -162,7 +168,7 @@
                                    @foreach( session('top_interactive_to_follow') as $follow)
                                    <div class="uname ">
                                        <img src="{{ $follow->image}}" id="profile"/>
-                                        <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
+                                        <span > <a href="/users/follower/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
                                          <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
                                         <input type="hidden" class="token" value="{{ csrf_token() }}">
 

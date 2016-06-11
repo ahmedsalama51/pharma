@@ -2302,4 +2302,30 @@ textarea { border: none; }
 
 /* a i.fa-arrow-down{color:#2C3E50;} */
 a:hover i.fa-arrow-down{color:red;}
+<<<<<<< HEAD
 a:hover i.fa-arrow-up{color:green;}
+.nosearch{
+	color:gray;
+	text-align: center;
+	margin-top:30px;
+}
+.tab-pane h3 
+{
+	color:#2C3E50;
+}
+.tab-pane a h4 
+{
+	color:#44BBF8;
+	margin-left: 20px;
+}
+.tab-pane a:hover h4 
+{
+	color:darkcyan;
+}
+.seprate{
+	background-color:gray;
+	color:gray;
+}
+=======
+a:hover i.fa-arrow-up{color:green;}
+>>>>>>> e838bef40e1a09670255b3c79412328a9150abb1

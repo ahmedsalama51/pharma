@@ -31,7 +31,7 @@ $(function () {
                array.push('<br><hr/>');
               array.push('<div class="comm'+response['feedback']['id']+'"> </div>');
                //array.push('<form><input type="hidden" name="_token" value="{{ csrf_token() }}"><div class="form-group col-md-4"><input class="form-control" type="text" name="content" class="form-control"/></div><div class="form-group"><input type="submit" class="btn btn-primary" value="add"/></div></form>');
-               array.push('<form ><input type="hidden" name="_token" value="'+token+'"><div class="form-group col-md-4"><input class="form-control" type="text" name="content" class="form-control" id="comment'+response['feedback']['id']+'"/></div><div  class="form-group"><input type="submit" class="btn btn-primary feedcomment" value="Comment"  data-rowid="'+response['feedback']['id']+'" data-rowtok="'+token+'"/></div></form>');
+               array.push('<form class="fatma'+response['feedback']['id']+'" ><input type="hidden" name="_token" value="'+token+'"><div class="form-group col-md-4"><input class="form-control" type="text" name="content" class="form-control" id="comment'+response['feedback']['id']+'"/></div><div  class="form-group"><input type="submit" class="btn btn-primary feedcomment" value="Comment"  data-rowid="'+response['feedback']['id']+'" data-rowtok="'+token+'"/></div></form>');
                array.push('</div></div>');
                $(array.join('')).insertBefore('.feeds');
                $('.feed').prop('disabled', true);
