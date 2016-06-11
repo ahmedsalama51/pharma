@@ -5,6 +5,7 @@ $(function () {
         e.preventDefault();
         var content = $("textarea").val();
         var feature_id = $('input[name="feature_id"]').val();
+        var token=$('input[name="_token"]').val();
         var data = {
             'feature_id': feature_id,
             '_token' : $('input[name="_token"]').val(),
@@ -28,8 +29,9 @@ $(function () {
               // array.push('<button type="button" class="feedup" data-rowid="'+response['feedback']['id']+'">Up</button>');
                array.push('<span>'+response['count']+' ups </span></div>');
                array.push('<br><hr/>');
+              array.push('<div class="comm'+response['feedback']['id']+'"> </div>');
                //array.push('<form><input type="hidden" name="_token" value="{{ csrf_token() }}"><div class="form-group col-md-4"><input class="form-control" type="text" name="content" class="form-control"/></div><div class="form-group"><input type="submit" class="btn btn-primary" value="add"/></div></form>');
-               array.push('<form ><input type="hidden" name="_token" value=""><div class="form-group col-md-4"><input  class="form-control" type="text" name="content" class="form-control" id="comment'+response['feedback']['id']+'"/></div><div  class="form-group"><input type="submit" class="btn btn-primary feedcomment" value="Comment"  data-rowid="'+response['feedback']['id']+'" data-rowtok=""/></div></form>');
+               array.push('<form ><input type="hidden" name="_token" value="'+token+'"><div class="form-group col-md-4"><input class="form-control" type="text" name="content" class="form-control" id="comment'+response['feedback']['id']+'"/></div><div  class="form-group"><input type="submit" class="btn btn-primary feedcomment" value="Comment"  data-rowid="'+response['feedback']['id']+'" data-rowtok="'+token+'"/></div></form>');
                array.push('</div></div>');
                $(array.join('')).insertBefore('.feeds');
                $('.feed').prop('disabled', true);
@@ -64,7 +66,7 @@ $(function () {
         });
     });
         // down feedback:cancelled
-        $('.feeddown').on('click',function(e){
+/*        $('.feeddown').on('click',function(e){
         e.preventDefault();
         var feedback_id=$(this).data('rowid');
         var url = '/feedbacks/down/'+feedback_id;
@@ -84,7 +86,7 @@ $(function () {
                 console.log(response);
             }
         });
-    });
+    });*/
     //delete feedback    
     $('.feeed').on('click','.deletefeed',function(e){
         e.preventDefault();

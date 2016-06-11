@@ -21,11 +21,11 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
+Route::auth();
  Route::group(['middleware' => ['web']], function () {
 
 
-		Route::auth();
+		#Route::auth();
 		Route::get('/', 'HomeController@index');
 		//post routes ...
 		Route::get('posts/{post}', 'PostsController@show');
@@ -66,7 +66,8 @@
 		Route::post('/commentup/add/{comment}', 'CommentupsController@store');
 
 
-
+		Route::post('/request', 'AccountsController@store');
+		Route::get('/request', 'AccountsController@store');
 
 
 
@@ -81,6 +82,21 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('features/add', 'FeaturesController@add');
     //url -> /features/{{$feature->id}}/delete
 	Route::get('features/{feature}/delete', 'FeaturesController@delete');
+
+	Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/users/delete/{id}', 'AdminController@delete');
+    Route::get('/admin/users/restore/{id}', 'AdminController@restore');
+    Route::get('/admin/users/generate', 'AdminController@generate');
+    Route::post('/admin/users/generate', 'AdminController@generate');
+    Route::get('/admin/users/banned', 'AdminController@banned');
+
+    Route::get('/admin/requests/accept/{id}', 'AccountsController@accept');
+    Route::get('/admin/requests/reject/{id}', 'AccountsController@reject');
+
+    
+    Route::get('/requests', 'AccountsController@requests');
+    Route::get('/requests/accepted', 'AccountsController@accepted');
+    Route::get('/requests/rejected', 'AccountsController@rejected');
 
 
 });

@@ -12,8 +12,7 @@
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label"><i class="fa fa-user" aria-hidden="true"></i>
-E-Mail or ID</label>
-
+                            E-Mail or ID</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="email" value="{{ old('email') }}">
 

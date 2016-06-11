@@ -28,6 +28,7 @@ class FeedbacksController extends Controller
 
 			$user = Auth::user();
 			$id=$request->feature_id;
+			$token=$request->_token;
 			#check if user add feedback to this feature before 
 			$exist = Feedback::where('feature_id',$id)->where('user_id',$user->id)->pluck('id');
 			if(sizeof( $exist)>0)
@@ -48,7 +49,6 @@ class FeedbacksController extends Controller
             'feedback' => $feedback,
             'name'=>$feedback->user->name,
             'image'=>$feedback->user->personal->image,
-            'feed_exist'=>$exist,
         );
         return response()->json($response); 
 	}
@@ -77,30 +77,18 @@ class FeedbacksController extends Controller
 		$exist = Feedbackup::where('feedback_id',$id)->where('user_id',$user->id)->pluck('id');
 		if(sizeof( $exist)>0 || sizeof( $feedback)>0)
 		{
-			#return Redirect::back()->with('error','you have already added your feedback');
-			#return Redirect::back()->withErrors(['msg', 'you have already added your feedback']);
-/*			$myfeedback = Feedback::where('id',$id )->first();
+			$feedback_id=$id;
+			$down= Feedbackup::where('feedback_id',$feedback_id)->where('user_id',$user->id)->first();
+			$down->delete(); 
+		    $myfeedback = Feedback::where('id',$feedback_id)->first();
 		    $count=$myfeedback->feedbackups->count();
 		    #return $count;
+		    #return Redirect::back();
 		    $response = array(
 	            'count' => $count,
-	            'feedback_id'=>$id,
+	            'feedback_id'=>$feedback_id,
 	        );
-	       return response()->json($response);*/
-
-	    #$user = Auth::user();
-		$feedback_id=$id;
-		$down= Feedbackup::where('feedback_id',$feedback_id)->where('user_id',$user->id)->first();
-		$down->delete(); 
-	    $myfeedback = Feedback::where('id',$feedback_id)->first();
-	    $count=$myfeedback->feedbackups->count();
-	    #return $count;
-	    #return Redirect::back();
-	    $response = array(
-            'count' => $count,
-            'feedback_id'=>$feedback_id,
-        );
-       return response()->json($response);
+	       return response()->json($response);
 		}
 		
 	    $up = new Feedbackup;
@@ -114,12 +102,10 @@ class FeedbacksController extends Controller
             'count' => $count,
             'feedback_id'=>$id,
         );
-       return response()->json($response); 
-	    #return view('features.feature',compact('feature','feedbacks'));
-	    #return $id;
+        return response()->json($response); 
 	}
 
-	public function feedbackDown(Request $r){
+/*	public function feedbackDown(Request $r){
 		$user = Auth::user();
 		$feedback_id=$r->feedback_id;
 		$down= Feedbackup::where('feedback_id',$feedback_id)->where('user_id',$user->id)->first();
@@ -134,5 +120,5 @@ class FeedbacksController extends Controller
         );
        return response()->json($response);
 
-	}
+	}*/
 }
