@@ -67,7 +67,7 @@ class UsersController extends Controller
             $profile = DB::table('personal_datas')->where('id',$id )->first();
             $user = DB::table('users')->where('id',$profile->user_id )->first();
             
-            $posts =   Post::where('user_id','=',$id )->orderBy('created_at','DESC')->get();
+            $posts =   Post::where('user_id','=',$user->id )->orderBy('created_at','DESC')->get();
            return view('users.other',compact('user','profile','posts')); 
         // }
     }
