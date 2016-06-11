@@ -37,4 +37,8 @@ class Comment extends Model
     {
     	return $this->belongsTo(Post::class);
     }
+    public function commentups()
+    {
+        return $this->hasMany(Commentup::class,'comment_id');
+    }
 }

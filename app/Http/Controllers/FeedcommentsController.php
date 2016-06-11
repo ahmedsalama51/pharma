@@ -38,10 +38,11 @@ class FeedcommentsController extends Controller
     	if($comment->user_id  == $user_id )
     	{
     		$comment->delete();
+    		return "ok";
     	}
     	else
     	{
-    		return back();
+    		return "fail";
     	}
     	
     	return back();

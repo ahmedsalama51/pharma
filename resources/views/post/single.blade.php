@@ -128,69 +128,84 @@
                                                      <input  class='btn btn-sm btn-primary updatepost' type='submit' name='Add' value="Update"/>
                                                     
                                                 </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                        </li>
-                                         <li>
-                                            <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="" data-toggle="modal" data-target=".delete{{$post->id}}">Delete</a>
-                                            <div class="modal alert alret-warning fade delete{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Warrning</h4>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                    Are you sure you want delete this post... <br> all comments and activites will be also deleted !!!
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                                    <a class="btn btn-md btn-primary" href="/delete/{{$post->id}}">Delete</a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                        </li>
-                                        @endif
-                                        <div class="clearfix"> </div>
-                                    </ul>
-                                </div>
-                                <div class="blog-artical-info-text box{{$post->id}}">
-                                    <p>{{ $post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
-                                </div>
-                                <div class="blog-artical-info-comment">
-                                    @if(sizeof($post->comments) >0)
-                                        @foreach($post->comments()->orderBy('created_at', 'desc')->orderBy('created_at', 'asc')->get()->reverse() as $comment )
-                                            <div class="commentHolder ">
-                                                <div class="leftSection pull-left col-md-1">
-                                                    <a href="/users/{{$comment->user->id}}">
-                                                        <img src="{{$comment->user->personal->image }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="pull-left rightSide col-md-11">
-                                                    <a class="col-md-12 pull-left" href="/users/{{$comment->user->id}}"> <p>{{$comment->user->name}}</p>
-                                                    </a>
-                                                    <p class="col-md-12 pull-left commentcontent">{{$comment->content}}</p>
-                                                    <input type="hidden" class="editcomment_token" value="{{ csrf_token() }}">
-                                                    <textarea class="editcommentbox hide col-md-10 pull-left commentcontent">{{$comment->content}}</textarea>
-                                                    <input type="submit" class=" hide ok pull-right btn btn-sm btn-primary" value="update">
-                                                </div>
-                                                <div class="commentAction col-md-12">   
-                                                    <a href="/posts/{{$post->id}}">
-                                                         <label>{{$post->created_at->format('d M,Y')}}</label>
-                                                            <label>{{$post->created_at->format('H:i A')}}</label>
-                                                    </a>
+</div>                                               </div>
+</div>                                         </li>
+<li>                                             <span><i class="fa fa-trash"
+aria-hidden="true"></i></span><a href="" data-toggle="modal" data-
+target=".delete{{$post->id}}">Delete</a>
+<div class="modal alert alret-warning fade delete{{$post->id}}" tabindex="-1"
+role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-
+label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Warrning</h4>
+</div>                                                   <div class="modal-
+body">                                                     Are you sure you
+want delete this post... <br> all comments and activites will be also deleted
+!!!                                                   </div>
+<div class="modal-footer">
+<button type="button" class="btn btn-sm btn-default" data-
+dismiss="modal">Close</button>
+<a class="btn btn-md btn-primary" href="/delete/{{$post->id}}">Delete</a>
+</div>                                                 </div>
+</div>                                             </div>
+</li>                                         @endif
+<div class="clearfix"> </div>                                     </ul>
+</div>                                 <div class="blog-artical-info-text
+box{{$post->id}}">                                     <p>{{
+$post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
+</div>                                 <div class="blog-artical-info-comment">
+@if(sizeof($post->comments) >0)
+@foreach($post->comments()->orderBy('created_at',
+'desc')->orderBy('created_at', 'asc')->get()->reverse() as $comment )
+<div class="commentHolder ">
+<div class="leftSection pull-left col-md-1">
+<a href="/users/{{$comment->user->id}}">
+<img src="{{$comment->user->personal->image }}" alt="">
+</a>                                                 </div>
+<div class="pull-left rightSide col-md-11">
+<a class="col-md-12 pull-left" href="/users/{{$comment->user->id}}">
+<p>{{$comment->user->name}}</p>
+</a>                                                     <p class="col-md-12
+pull-left commentcontent">{{$comment->content}}</p>
+<input type="hidden" class="editcomment_token" value="{{ csrf_token() }}">
+<textarea class="editcommentbox hide col-md-10 pull-left
+commentcontent">{{$comment->content}}</textarea>
+<input type="submit" class=" hide ok pull-right btn btn-sm btn-primary"
+value="update">                                                 </div>
+<div class="commentAction col-md-12">
+<a href="/posts/{{$post->id}}">
+<label>{{$post->created_at->format('d M,Y')}}</label>
+<label>{{$post->created_at->format('H:i A')}}</label>
+</a>                                                     <span>
 
-                                                    <span>
-                                                        <i class="fa fa-arrow-up" aria-hidden="true"></i><a href="" data-toggle="modal" data-target=".edit{{$post->id}}"> Up</a>
+                                                    UPS (<i class="commentups" >{{$comment->commentups->count()}} </i>) 
+                                                    <?php $ccount = 'no';?>
+                                                    @foreach (Auth::user()->commentups as $key => $commentup)
+                                                       @if($commentup['comment_id'] == $comment->id)
+                                                           <?php $ccount = '1';?>
+                                                       @endif
+                                                    @endforeach
+                                                    @if($ccount == '1' )
+                                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
+                                                            <a href="" class="commentUp " comment="{{$comment->id}}">
+                                                            <i class="fa fa-arrow-down clike" aria-hidden="true"></i> 
+                                                        </a>
+                                                    @else
+                                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
+                                                            <a href="" class="commentUp" comment="{{$comment->id}}">
+                                                            <i class="fa fa-arrow-up clike" aria-hidden="true"></i> 
+                                                        </a>
+                                                    @endif
                                                     </span>
                                                     @if(Auth::user()->id == $comment->user->id)
                                                     <span>
                                                         <i class="fa fa-pencil" aria-hidden="true"></i><a href="" class="editcomment" comment="{{$comment->id}}"> Edit</a>
                                                     </span>
                                                     <span>
-                                                        <i class="fa fa-trash" aria-hidden="true"></i><a href="" data-toggle="modal" data-target=".edit{{$post->id}}"> Delete</a>
+                                                        <i class="fa fa-trash" aria-hidden="true"></i><a href="/comment/delete/{{$comment->id}}"> Delete</a>
                                                     </span>
                                                     @endif
                                                 </div>
@@ -247,3 +262,4 @@
                     
                 <!---start-blog-pagenate---->       
 @endsection
+

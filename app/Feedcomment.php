@@ -3,14 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Feedcomment extends Model
 {
+    use SoftDeletes;
      /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    protected $dates = ['deleted_at'];
+    
     protected $fillable = [
         'content',
     ];
@@ -26,7 +31,7 @@ class Feedcomment extends Model
     /*Relation between tables */
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function feedback()
