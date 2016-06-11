@@ -28,6 +28,7 @@ class FeedbacksController extends Controller
 
 			$user = Auth::user();
 			$id=$request->feature_id;
+			$token=$request->_token;
 			#check if user add feedback to this feature before 
 			$exist = Feedback::where('feature_id',$id)->where('user_id',$user->id)->pluck('id');
 			if(sizeof( $exist)>0)
@@ -48,7 +49,6 @@ class FeedbacksController extends Controller
             'feedback' => $feedback,
             'name'=>$feedback->user->name,
             'image'=>$feedback->user->personal->image,
-            'feed_exist'=>$exist,
         );
         return response()->json($response); 
 	}

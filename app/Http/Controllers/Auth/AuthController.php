@@ -6,10 +6,10 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Jenssegers\MongoDB\Model;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -77,7 +77,7 @@ $max = App\Flight::where('active', 1)->max('price');*/
     }
 #overload login of Auth
     public function login(Request $request){
-        
+
          $this->validate($request, [
             'email' => 'required', 'password' => 'required',
         ]);
@@ -102,13 +102,17 @@ $max = App\Flight::where('active', 1)->max('price');*/
             return redirect('/'); 
             }
         } 
-
         else{
-            return redirect('/login')
-                ->withInput($request->only('email'))
+
+/*            return redirect('/login')->withInput($request->only('email'))
+                ->withErrors([
+                    'email' => 'These credentials do not match our records.',
+                ]);*/
+            return redirect('/login')->withInput($request->all())
                 ->withErrors([
                     'email' => 'These credentials do not match our records.',
                 ]);
+                
         }
     }
 
