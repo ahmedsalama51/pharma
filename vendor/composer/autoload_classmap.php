@@ -20,6 +20,7 @@ return array(
     'AddNumsToPersonalDatasTable' => $baseDir . '/database/migrations/2016_06_01_110539_add_nums_to_personal_datas_table.php',
     'AddRequestIdToUsersTable' => $baseDir . '/database/migrations/2016_06_11_095641_add_request_id_to_users_table.php',
     'AddSoftDeletesToAccountsTable' => $baseDir . '/database/migrations/2016_06_08_032958_add_softDeletes_to_accounts_table.php',
+    'AddSoftDeletesToPersonalDatasTable' => $baseDir . '/database/migrations/2016_06_11_224101_add_softDeletes_to_personalDatas_table.php',
     'AddSoftDeletesToUserTable' => $baseDir . '/database/migrations/2016_06_04_101547_add_softDeletes_to_user_table.php',
     'AddTablePostups' => $baseDir . '/database/migrations/2016_06_05_121813_add_table_postups.php',
     'Cartalyst\\Sentry\\Groups\\GroupExistsException' => $vendorDir . '/cartalyst/sentry/src/Cartalyst/Sentry/Groups/Exceptions.php',

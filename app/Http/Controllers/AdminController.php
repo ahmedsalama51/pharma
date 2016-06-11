@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Account;
+use App\Feedback;
 use App\Personal_data as Personal;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -139,9 +140,9 @@ class AdminController extends Controller
       return view('admin.dashboard', compact('users','from'));
     }
 
-	// public function single($value='')
+	// public function feedbacks($value='')
 	// {
-	// 	# code...
+		
 	// }
 
 }

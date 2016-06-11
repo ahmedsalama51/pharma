@@ -519,6 +519,7 @@ class ComposerStaticInit61d673b6c98df63d7274d79af2d0b627
         'AddNumsToPersonalDatasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_01_110539_add_nums_to_personal_datas_table.php',
         'AddRequestIdToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_11_095641_add_request_id_to_users_table.php',
         'AddSoftDeletesToAccountsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_032958_add_softDeletes_to_accounts_table.php',
+        'AddSoftDeletesToPersonalDatasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_11_224101_add_softDeletes_to_personalDatas_table.php',
         'AddSoftDeletesToUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_101547_add_softDeletes_to_user_table.php',
         'AddTablePostups' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_121813_add_table_postups.php',
         'Cartalyst\\Sentry\\Groups\\GroupExistsException' => __DIR__ . '/..' . '/cartalyst/sentry/src/Cartalyst/Sentry/Groups/Exceptions.php',
