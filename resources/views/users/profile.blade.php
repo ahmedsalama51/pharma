@@ -24,7 +24,7 @@
                             
                             </div>
                             <br><br><div class='form-group form-group-sm'>
-                               <form method="post" action="/posts/add" enctype="multipart/form-data">
+                               <!-- <form method="post" action="/posts/add" enctype="multipart/form-data">
                                 {!! csrf_field() !!}
                                     <div class='col-xs-12 col-md-12' >
                                         <div class='form-control addpost' >
@@ -42,7 +42,7 @@
                                                   <input  class='col-xs-2 pull-right btn btn-sm btn-primary' type='submit' name='Add' value="Publish"/>
                                         </div>                                    
                                    </div>
-                                </form>
+                                </form> -->
                                 <div class="clearfix"> </div>
                           </div>
                           
