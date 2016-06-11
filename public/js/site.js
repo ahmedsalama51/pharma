@@ -43,6 +43,8 @@ $(function () {
 
     });
 
+// ajax for delete feedback comment 
+
     $("body").delegate('.delete','click',function (e){
         
         e.preventDefault();
@@ -89,24 +91,23 @@ $(function () {
                     {
                         console.log(data);
                       
-                        $(".comm"+feedback_id).append('<div class="uname"  id="comment'+data[0]['id']+'" style="min-height: 0px; ">');
-                        $(".comm"+feedback_id).append('<img src="' +data[2]+'" id="profile" style="width: 30px; height: 25px ; -webkit-border-radius: 30em;"/> ');
-                        $(".comm"+feedback_id).append('<span><i class="fa fa-user" aria-hidden="true"></i></span>  by <a href="">' +data[1]+ '</a> ');
-                        $(".comm"+feedback_id).append('<span>' +data[0]['content']+ '</span> ');
-                        $(".comm"+feedback_id).append('<span><a  class="glyphicon glyphicon-pencil feed" id="runedit" data-rowid="'+data[0]['id']+'" href="" style="color: #19b5fe;"></a></span> ');
-                        $(".comm"+feedback_id).append('<span><a  class="glyphicon glyphicon-trash delete" data-rowid="'+data[0]['id']+'" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');
-                        
-                        $(".comm"+feedback_id).append('<form>');
-                        $(".comm"+feedback_id).append('<input type="hidden" name="_token" value="{{ csrf_token() }}">');
-                        $(".comm"+feedback_id).append('<input type="hidden" name="comment"  value="'+data[0]['id']+'" />');
-                        $(".comm"+feedback_id).append('<br>');
-                        $(".comm"+feedback_id).append('<button class="btn btn-default comment_up" data-rowtok="'+_token+'" data-rowid="'+data[0]['id']+'" > <span class="glyphicon glyphicon-thumbs-up" id="data'+data[0]['id']+'" aria-hidden="true">'+data[0]['no_ups']+'</span></button>');                               
-                        $(".comm"+feedback_id).append ('</form></div><br><br><hr>'); 
-                        $(".comm"+feedback_id).append('<div class="formdiv'+data[0]['id']+' hide form1" ><form > <div class="form-group col-md-4"> <input  class="form-control" type="text" name="content" class="form-control" id="comment'+data[0]['id']+'" value="'+data[0]['content']+'"/> </div> <div  class="form-group "> <input type="submit" class="btn btn-primary feedcommentedit" value="Edit"  data-rowid="'+data[0]['id']+'" data-rowtok="'+_token+'"/> <input type="reset" class="btn btn-danger cancel" value="Cancel"/></div> </form>  </div> ');
-
-                                               
-                    }
-                });
+                       var array = [];
+                       array.push('<div class="uname"  id="comment'+data[0]['id']+'" style="min-height: 0px; ">');                         
+                       array.push('<img src="' +data[2]+'" id="profile" style="width: 30px; height: 25px ; -webkit-border-radius: 30em;"/>');                         
+                       array.push('<span><i class="fa fa-user" aria-hidden="true"></i></span>  by <a href="">' +data[1]+ '</a> ');                         
+                       array.push('<span>' +data[0]['content']+ '</span> ');                         
+                       array.push('<span><a  class="glyphicon glyphicon-pencil feed" id="runedit" data-rowid="'+data[0]['id']+'" href="" style="color: #19b5fe;"></a></span> ');                         
+                       array.push('<span><a  class="glyphicon glyphicon-trash delete" data-rowid="'+data[0]['id']+'" href="/feedcomment/'+data[0]['id']+'/delete" style="color: #19b5fe;"></a><span>');                         
+                       array.push('<form>');                         
+                       array.push('<input type="hidden" name="_token" value="{{ csrf_token() }}">');                         
+                       array.push('<input type="hidden" name="comment"  value="'+data[0]['id']+'" />');                         
+                       array.push('<br>');                         
+                       array.push('<button class="btn btn-default comment_up" data-rowtok="'+_token+'" data-rowid="'+data[0]['id']+'" > <span class="glyphicon glyphicon-thumbs-up" id="data'+data[0]['id']+'" aria-hidden="true">'+data[0]['no_ups']+'</span></button>');                         
+                       array.push('</form><br><hr></div>'); 
+                       array.push('<div class="formdiv'+data[0]['id']+' hide form1" ><form > <div class="form-group col-md-4"> <input  class="form-control" type="text" name="content" class="form-control" id="comment'+data[0]['id']+'" value="'+data[0]['content']+'"/> </div> <div  class="form-group "> <input type="submit" class="btn btn-primary feedcommentedit" value="Edit"  data-rowid="'+data[0]['id']+'" data-rowtok="'+_token+'"/> <input type="reset" class="btn btn-danger cancel" value="Cancel"/></div> </form>  </div> ');                        
+                       $(array.join('')).insertBefore('.fatma'+feedback_id);    
+                     }
+                 });
             });
     
     $("body").delegate(".feedcommentedit",'click',function(e){
@@ -145,7 +146,7 @@ $(function () {
                         $("#comment"+feedcomment_id).append ('<button class="btn btn-default comment_up" data-rowtok="'+_token+'" data-rowid="'+data[0]['id']+'" > <span class="glyphicon glyphicon-thumbs-up" id="data'+data[0]['id']+'" aria-hidden="true">'+data[0]['no_ups']+'</span></button>');                               
                         $("#comment"+feedcomment_id).append  ('</form></div><br><br><hr>');            
                         $("#comment"+feedcomment_id).append (''); 
-                        
+
                                                
                     }
                 });

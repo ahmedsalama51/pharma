@@ -95,11 +95,9 @@
                                         <!--fatma /feedcomment/{{$feedback->id}}/add-->
 
 
-                                       
-
 
                                          </div>
-                                        <form >
+                                        <form class="fatma{{$feedback->id}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div class='form-group col-md-4'>
                                                         <input  class='form-control' type='text' name='content' class='form-control' id="comment{{$feedback->id}}"/>
