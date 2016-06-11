@@ -48,7 +48,8 @@
                             <li><a href="/users/{{ Auth::user()->id }}" >
                                 <img width="30px" height="20px" src="{{ Auth::user()->personal->image }}" alt=""> {{ Auth::user()->name }} </a>
                             @if(Auth::user()->isAdmin())
-                            <li><a href="#">Dashboard</a>
+                            <li><a href="/admin">Dashboard</a>
+                            <li><a href="/requests">Requests</a>
                             @endif
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                
@@ -263,3 +264,4 @@
     <script src="{{asset('js/feedbackup.js')}}"></script>
     <script src="{{ asset('js/site.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="{{ asset('js/showpassword.js')}}"></script>

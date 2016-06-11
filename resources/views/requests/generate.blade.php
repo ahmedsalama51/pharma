@@ -86,6 +86,14 @@
                                           <option value="doctor">Doctor</option>                              
                                       </select>
                                       @endif
+                                      @else
+                                    <select  class="form-control" data-style="btn-primary" id="type" name="type">
+                                     
+                                      <option value="pharmacy-student">pharmacy-student</option>
+                                      <option value="medicine-student">medicine-student</option>   
+                                      <option selected value="phamacist">Phamacist</option>                              
+                                      <option value="doctor">Doctor</option>
+                                    </select>
                                   
                                    @endif
                                         @if ($errors->has('type'))
