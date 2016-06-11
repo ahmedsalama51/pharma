@@ -65,8 +65,14 @@ Route::auth();
 		//UPs routes ...
 		Route::post('/postup/add/{post}', 'PostupsController@store');
 		Route::post('/commentup/add/{comment}', 'CommentupsController@store');
+<<<<<<< HEAD
+
 		//search routes ...
 		Route::post('/search/', 'HomeController@search');
+=======
+>>>>>>> e838bef40e1a09670255b3c79412328a9150abb1
+
+
 		Route::post('/request', 'AccountsController@store');
 		Route::get('/request', 'AccountsController@store');
 
