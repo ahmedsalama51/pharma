@@ -56,6 +56,7 @@
             <th>Email</th>
             <th>Name</th>
             <th>ID Number</th>
+            <th>Type</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
@@ -65,6 +66,7 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->id_number}}</td>
+                <td>{{$user->Type}}</td>
                 <td class="text-center"><a href="/admin/users/{{$user->trashed() ? 'restore' : 'delete'}}/{{$user->id}}" class="btn btn-sm {{$user->trashed() ? 'btn-success' : 'btn-danger' }}"><span class="glyphicon {{$user->trashed() ? 'glyphicon-ok' : 'glyphicon-remove' }}"></span>{{$user->trashed() ? 'Unban' : 'Ban'}} </a></td>
             </tr>
     @endforeach
