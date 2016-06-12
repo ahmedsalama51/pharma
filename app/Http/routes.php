@@ -101,5 +101,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/requests/accepted', 'AccountsController@accepted');
     Route::get('/requests/rejected', 'AccountsController@rejected');
 
+    Route::get('/admin/feedbacks', 'AdminController@feedbacks');
+
 
 });

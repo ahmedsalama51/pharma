@@ -36,7 +36,8 @@ class AccountsController extends Controller
 
 				$account = new Account;
 				$account->name = $request->name;
-				$account->email = $request->email;
+                $account->email = $request->email;
+				$account->type = $request->type;
 				$account->id_number = $request->id_number;
 				$account->created_at = Carbon::now();
 				$account->updated_at = Carbon::now();
