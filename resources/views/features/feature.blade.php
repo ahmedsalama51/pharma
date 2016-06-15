@@ -35,10 +35,23 @@
                             @if(Auth::user()->id == $feedback->user->id)       
                                  <button type="button" class="deletefeed" data-rowid="{{$feedback->id}}" >Delete</button>
                             @endif
+                                    <?php  
+                                    $up_array=array();
+                                    foreach($feedback->feedbackups as $f){
+                                        if($f->feedback_id==$feedback->id){
+                                    array_push($up_array,$f->user_id);
+                                }}
+                                    ?>
+
                             @if(Auth::user()->id != $feedback->user->id)
-                                    <button type="button" class="feedup" data-rowid="{{$feedback->id}}" >Up</button>
+                            @if(in_array(Auth::user()->id,$up_array))
+                                    <button type="button" class="feedup feeddown{{$feedback->id}}" data-rowid="{{$feedback->id}}" >Down</button>
 <!--                                     <button type="button" class="feeddown" data-rowid="{{$feedback->id}}" >Down</button>
- -->                            @endif            
+ -->                        @else   
+                                    <button type="button" class="feedup feeddown{{$feedback->id}}" data-rowid="{{$feedback->id}}" >Up</button>
+                            @endif
+                            @endif 
+                                       
                                         <span class="ups{{$feedback->id}}">{{$feedback->feedbackups->count()}} ups </span>
                                         </div>
 

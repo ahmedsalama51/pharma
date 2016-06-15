@@ -75,6 +75,8 @@ class FeedbacksController extends Controller
 		$feedback = Feedback::where('id',$id)->where('user_id',$user->id)->pluck('user_id');
 		#check if this user has upped this feedback before or not
 		$exist = Feedbackup::where('feedback_id',$id)->where('user_id',$user->id)->pluck('id');
+		 $feedback1 = Feedback::where('id',$id)->first();
+		 $count_before=$feedback1->feedbackups->count();
 		if(sizeof( $exist)>0 || sizeof( $feedback)>0)
 		{
 			$feedback_id=$id;
@@ -82,11 +84,13 @@ class FeedbacksController extends Controller
 			$down->delete(); 
 		    $myfeedback = Feedback::where('id',$feedback_id)->first();
 		    $count=$myfeedback->feedbackups->count();
+		    $count_diff=$count-$count_before;
 		    #return $count;
 		    #return Redirect::back();
 		    $response = array(
 	            'count' => $count,
 	            'feedback_id'=>$feedback_id,
+	            'count_diff'=>$count_diff,
 	        );
 	       return response()->json($response);
 		}
