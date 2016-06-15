@@ -35,8 +35,6 @@
                         <span class="menu"> </span>
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ url('/') }}">About</a></li>
-                            <li><a href="{{ url('/') }}">Services</a></li>
                             <li><a href="{{ url('features') }}">R & D</a></li>
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a>
@@ -210,7 +208,7 @@
 <!-- team-grids-caption -->
 <!-- footer -->
     <div class="footer navbar navbar-default navbar-static-bottom">
-            <div class="col-md-3 foot-1">
+            <!-- <div class="col-md-3 foot-1">
                 <h4>Latest Posts</h4>
                 <ul>
                 <li><a href="">||   </a></li>
@@ -236,7 +234,7 @@
                 <ul> 
                     <li><a href="">||  </a></li>
                 </ul>
-            </div>
+            </div> -->
             
             <div class="clearfix"> </div>
             <div class="copyright">
