@@ -265,8 +265,8 @@
                        @foreach( session('top_to_follow') as $follow)
                            <div class="uname col-md-3 col-sm-3 col-xs-3">
                                <img src="{{$follow->image}}" id="profile"/>
-                                <span > <a href="/users/{{$follow->id}}"> {{$follow->user->name}}</a> </span>
-                                <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
+                                <span > <a href="/users/{{$follow->user_id}}"> {{$follow->user->name}}</a> </span>
+                                <button  class=" btn btn-xs btn-success follow" value="{{$follow->user_id}}"> Follow </button>
                                 <input type="hidden" class="token" value="{{ csrf_token() }}">
 
                            </div>

@@ -21,7 +21,7 @@ class FollowersController extends Controller
 			$user = Auth::user();
 			$follower = User::find($request->follower_id);
 			$exsist = Follower::where('follower_id',$follower->id)->where('user_id',$user->id)->pluck('id');
-			if(sizeof( $exsist)>0)
+			if(sizeof($exsist)>0)
 			{
 				return "already followed";
 			}
