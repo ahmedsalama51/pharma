@@ -90,7 +90,7 @@
                             <div class="blog-artical-info">
                                 @if(isset($post->image) && $post->image != '')
                                     <div class="blog-artical-info-img">
-                                        <a href="#"><img src="{{ $post->image}}"" title="post-name"></a>
+                                        <a href="#"><img src="{{ $post->image}}" title="post-name"></a>
                                     </div>
                                 @endif
                                 <div class="blog-artical-info-head">
