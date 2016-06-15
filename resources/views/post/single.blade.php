@@ -262,7 +262,3 @@ value="update">                                                 </div>
                     
                 <!---start-blog-pagenate---->       
 @endsection
-<<<<<<< HEAD
-=======
-
->>>>>>> e838bef40e1a09670255b3c79412328a9150abb1
