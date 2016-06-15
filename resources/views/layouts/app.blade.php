@@ -139,8 +139,12 @@
                                        @foreach( session('top_users_to_follow') as $follow)
                                        <div class="uname ">
                                            <img src="{{$follow->image}}" id="profile"/>
+
                                             <span > <a href="/users/{{$follow->user_id}}"> {{$follow->user->name}}</a> </span>
                                             <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
+
+                                            
+
                                             <input type="hidden" class="token" value="{{ csrf_token() }}">
 
                                        </div>
@@ -159,8 +163,10 @@
                                    @foreach( session('top_interactive_to_follow') as $follow2)
                                    <div class="uname ">
                                        <img src="{{ $follow2->image}}" id="profile"/>
+
                                         <span > <a href="/users/{{$follow2->user_id}}"> {{$follow2->user->name}}</a> </span>
                                          <button  class=" btn btn-xs btn-success follow" value="{{$follow2->id}}"> Follow </button>
+
                                         <input type="hidden" class="token" value="{{ csrf_token() }}">
 
                                    </div>
