@@ -140,7 +140,7 @@
                                        <div class="uname ">
                                            <img src="{{$follow->image}}" id="profile"/>
                                             <span > <a href="/users/follower/{{$follow->user_id}}"> {{$follow->user->name}}</a> </span>
-                                            <button  class=" btn btn-xs btn-success follow" value="{{$follow->id}}"> Follow </button>
+                                            <button  class=" btn btn-xs btn-success follow" value="{{$follow->user_id}}"> Follow </button>
                                             <input type="hidden" class="token" value="{{ csrf_token() }}">
 
                                        </div>
@@ -160,7 +160,7 @@
                                    <div class="uname ">
                                        <img src="{{ $follow2->image}}" id="profile"/>
                                         <span > <a href="/users/follower/{{$follow2->user_id}}"> {{$follow2->user->name}}</a> </span>
-                                         <button  class=" btn btn-xs btn-success follow" value="{{$follow2->id}}"> Follow </button>
+                                         <button  class=" btn btn-xs btn-success follow" value="{{$follow2->user_id}}"> Follow </button>
                                         <input type="hidden" class="token" value="{{ csrf_token() }}">
 
                                    </div>
