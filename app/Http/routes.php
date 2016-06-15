@@ -35,7 +35,7 @@ Route::auth();
 		//user routes ...
 		Route::get('/users/index', 'UsersController@index');
 		Route::get('/users/{User}', 'UsersController@profile');
-		Route::get('/users/follower/{User}', 'UsersController@follower');
+		// Route::get('/users/follower/{User}', 'UsersController@follower');
 		Route::get('/users/{User}/profiledetails', 'UsersController@details');
 		Route::get('/users/{User}/editprofile', 'UsersController@edit');
 		Route::patch('/users/{User}/update', 'UsersController@update');
