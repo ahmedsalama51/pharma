@@ -65,24 +65,20 @@
                                            <?php $count = '1';?>
                                        @endif
                                     @endforeach
+                                    <li class="artlick"  data-toggle="tooltip" data-placement="bottom" title="@foreach($post->postups as $ups){{$ups->user->name}} , @endforeach ...">
+                                    <input type="hidden" class="up_token" value="{{ csrf_token() }}">
+                                    <a href="" class="postUp" post="{{$post->id}}">
+                                        <span class="dlike">
                                     @if($count == '1' )
+                                            <i class="fa fa-arrow-down ilike" aria-hidden="true">
 
-                                        <li class="artlick">
-                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
-                                            <a href="" class="postUp" post="{{$post->id}}">
-                                                    <span class="dlike"><i class="fa fa-arrow-down ilike" aria-hidden="true"></i></span>
-                                                    <i class="count">{{$post->postups->count()}}</i>
-                                                </a>
-                                        </li>
                                     @else
-                                        <li class="artlick">
-                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
-                                            <a href="" class="postUp" post="{{$post->id}}">
-                                                    <span class="dlike"><i class="fa fa-arrow-up ilike" aria-hidden="true"></i></span>
-                                                    <i class="count">{{$post->postups->count()}}</i>
-                                                </a>
-                                        </li>
+                                            <i class="fa fa-arrow-up ilike" aria-hidden="true">
                                     @endif
+                                            </i>
+                                        </span>
+                                    <i class="count">{{$post->postups->count()}}</i>
+                                    </a>
                                     <li class="art-comment"><a href="/posts/{{$post->id}}"><span> </span> <i class="commentsCount">{{$post->comments->count()}}</i></a></li>
                                     <div class="clearfix"> </div>
                                 </ul>
@@ -183,7 +179,7 @@
                                                             <label>{{$post->created_at->format('H:i A')}}</label>
                                                     </a>
                                                     
-                                                    <span>
+                                                    <span data-toggle="tooltip" data-placement="top" title="@foreach($comment->commentups as $ups){{$ups->user->name}} , @endforeach ...">
                                                     UPS (<i class="commentups" >{{$comment->commentups->count()}} </i>) 
                                                     <?php $ccount = 'no';?>
                                                     @foreach (Auth::user()->commentups as $key => $commentup)
@@ -244,17 +240,6 @@
                         <div class="hr"></div>
 
                         @endforeach
-                    <div class="blog-pagenat">
-                        <ul>
-                            <li><a class="frist" href="#"> <span> </span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a class="last" href="#"> <span> </span></a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
                 </div>
                     @else
                     <div class="blog-artical">
