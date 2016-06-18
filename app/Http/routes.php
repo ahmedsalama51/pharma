@@ -67,8 +67,11 @@ Route::auth();
 		Route::post('/commentup/add/{comment}', 'CommentupsController@store');
 		//search routes ...
 		Route::post('/search/', 'HomeController@search');
-		Route::post('/request', 'AccountsController@store');
+		// Route::post('/request', 'AccountsController@store');
 		Route::get('/request', 'AccountsController@store');
+
+		Route::post('/account', 'AccountsController@store');
+
 
 
 

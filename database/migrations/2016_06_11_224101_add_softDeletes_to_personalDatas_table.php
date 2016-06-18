@@ -13,7 +13,7 @@ class AddSoftDeletesToPersonalDatasTable extends Migration
     public function up()
     {
         Schema::table('personal_datas', function (Blueprint $table) {
-            // $table->softDeletes();
+            $table->softDeletes();
         });
     }
 

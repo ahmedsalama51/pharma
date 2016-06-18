@@ -14,7 +14,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Request Account</div>
                 <div class="panel-body">
-                  <form class="form-horizontal" role="form" method="POST" action="{{ url('/request') }}" enctype="multipart/form-data">
+                  <form class="form-horizontal" role="form" method="POST" action="{{ url('/account') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
