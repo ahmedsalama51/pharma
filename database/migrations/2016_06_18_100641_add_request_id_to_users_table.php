@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftDeletesToPersonalDatasTable extends Migration
+class AddRequestIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddSoftDeletesToPersonalDatasTable extends Migration
      */
     public function up()
     {
-        Schema::table('personal_datas', function (Blueprint $table) {
-            // $table->softDeletes();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('request_id')->unsigned();
         });
     }
 

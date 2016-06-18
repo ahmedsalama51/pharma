@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftDeletesToPersonalDatasTable extends Migration
+class AddPasswordToPersonalDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddSoftDeletesToPersonalDatasTable extends Migration
     public function up()
     {
         Schema::table('personal_datas', function (Blueprint $table) {
-            // $table->softDeletes();
+            $table->string('password');
         });
     }
 
