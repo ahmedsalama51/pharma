@@ -39,17 +39,45 @@
                                  <img src="{{$post->user->personal->image}}">   
                                     @endif
                                     </li>
-                                    <li class="post-date"><p><span> {{$post->created_at->format('d')}}</span><label>{{$post->created_at->format('M,Y')}}</label></p></li>
-                                    <li class="artlick"><a href="#"><span> </span> <i>90</i></a></li>
-                                    <li class="art-comment"><a href="#"><span> </span> <i>50</i></a></li>
+                                    <li class="post-date">
+                                        <p>
+                                            <span> {{$post->created_at->format('d')}}</span>
+                                            <label>{{$post->created_at->format('M,Y')}}</label>
+                                            <label>{{$post->created_at->format('H:i A')}}</label>
+                                        </p>
+                                    </li>
+                                    <?php $count = 'no';?>
+                                    @foreach (Auth::user()->postups as $key => $postup)
+                                       @if($postup['post_id'] == $post->id)
+                                           <?php $count = '1';?>
+                                       @endif
+                                    @endforeach
+                                    @if($count == '1' )
+
+                                        <li class="artlick">
+                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
+                                            <a href="" class="postUp" post="{{$post->id}}">
+                                                    <span class="dlike"><i class="fa fa-arrow-down ilike" aria-hidden="true"></i></span>
+                                                    <i class="count">{{$post->postups->count()}}</i>
+                                                </a>
+                                        </li>
+                                    @else
+                                        <li class="artlick">
+                                            <input type="hidden" class="up_token" value="{{ csrf_token() }}">
+                                            <a href="" class="postUp" post="{{$post->id}}">
+                                                    <span class="dlike"><i class="fa fa-arrow-up ilike" aria-hidden="true"></i></span>
+                                                    <i class="count">{{$post->postups->count()}}</i>
+                                                </a>
+                                        </li>
+                                    @endif
+                                    <li class="art-comment"><a href="/posts/{{$post->id}}"><span> </span> <i class="commentsCount">{{$post->comments->count()}}</i></a></li>
                                     <div class="clearfix"> </div>
                                 </ul>
                             </div>
-
                             <div class="blog-artical-info">
                                 @if(isset($post->image) && $post->image != '')
                                     <div class="blog-artical-info-img">
-                                        <a href="#"><img src="{{ $post->image}}"" title="post-name"></a>
+                                        <a href="#"><img src="{{ $post->image}}" title="post-name"></a>
                                     </div>
                                 @endif
                                 <div class="blog-artical-info-head">
@@ -59,7 +87,7 @@
                                         @if(Auth::user()->id == $post->user_id && Auth::user()->token == $post->user_token)
                                          <li>
                                             <span><i class="fa fa-pencil" aria-hidden="true"></i></span><a href="" data-toggle="modal" data-target=".edit{{$post->id}}">Edit</a>
-                                            <div class="modal alert alret-warning fade edit{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal fade edit{{$post->id}}" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
                                               <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
@@ -67,25 +95,27 @@
                                                     <h4 class="modal-title" id="myModalLabel">Edit post</h4>
                                                   </div>
                                                   <div class="modal-body" style="height:250px">
-                                                   <form method="post" action="/edit/{{$post->id}}" enctype="multipart/form-data">
-                                                    {!! csrf_field() !!}
+                                                   <!-- <img src="{{$post->image}}" width="270px" height="145px" class="pull-left" style="margin-bottom: 5px;"/>  
                                                     <div class=" btn  col-md-2 col-sm-2 uploadfile ">
-                                                        <img src="{{$post->image}}" width="270px" height="150px" />    
-                                                        <i class="fa fa-picture-o" aria-hidden="true"></i> <!-- Upload another Photo
-                                                        <input type="file" name="image" class="upload" /> -->
+                                                          
+                                                        <i class="fa fa-picture-o" aria-hidden="true"></i> Upload another Photo
+                                                        <input type="file" name="image" class="upload pull-right" value="{{$post->image}}"/>
+
+                                                        
                                                     </div>
-                                                    <hr> 
+                                                    <hr>  -->
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <img class="col-md-2 col-sm-2 col-xs-2 pull-left" src="{{Auth::user()->personal->image }}" alt="">
-                                                        <textarea  class="col-md-10 col-sm-10 col-xs-7" name='content'  placeholder="add new post">{{$post->content}}</textarea>
+                                                        <input type="hidden" class="edit_token" value="{{ csrf_token() }}">
+                                                        <textarea  class="editpost col-md-10 col-sm-10 col-xs-7" post="{{$post->id}}" name='content'  placeholder="add new post">{{$post->content}}</textarea>
                                                     </div>
-                                                    </div>
-                                                  <div class="modal-footer">
+                                                </div>
+                                                <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                                                     
-                                                     <input  class='btn btn-sm btn-primary' type='submit' name='Add' value="Update"/>
-                                                    </form>
-                                                  </div>
+                                                     <input  class='btn btn-sm btn-primary updatepost' type='submit' name='Add' value="Update"/>
+                                                    
+                                                </div>
                                                 </div>
                                               </div>
                                             </div>
@@ -114,10 +144,10 @@
                                         <div class="clearfix"> </div>
                                     </ul>
                                 </div>
-                                <div class="blog-artical-info-text">
-                                    <p>{{ $post->content}}<a href="#">[...]</a></p>
+                                <div class="blog-artical-info-text box{{$post->id}}">
+                                    <p>{{ $post->content}}<a href="/posts/{{$post->id}}">[...]</a></p>
                                 </div>
-                                 <div class="blog-artical-info-comment">
+                                <div class="blog-artical-info-comment">
                                     @if(sizeof($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get())>0)
                                         @foreach($post->comments()->orderBy('created_at', 'desc')->take(3)->orderBy('created_at', 'asc')->get()->reverse() as $comment )
                                             <div class="commentHolder ">
@@ -216,17 +246,22 @@
                     @else
                     <div class="blog-artical">
                             <h4 class="h_nopost"><i>-- There is no posts yet -- </i></h4>
-                            
-          
+                            <p class="p_nopost">you need to follow some frinds first , here is suggestion</p>
+                    
+                       
+                       @foreach( session('top_to_follow') as $follow)
+                           <div class="uname col-md-3 col-sm-3 col-xs-3">
+                               <img src="{{$follow->image}}" id="profile"/>
+                                <span > <a href="/users/{{$follow->user_id}}"> {{$follow->user->name}}</a> </span>
+                                <button  class=" btn btn-xs btn-success follow" value="{{$follow->user_id}}"> Follow </button>
+                                <input type="hidden" class="token" value="{{ csrf_token() }}">
+
+                           </div>
+                        @endforeach
+
                     </div>
                 </div>
                     @endif
-                  
-                  
-                  
                     
-                </div>
-                <!---start-blog-pagenate---->
-         
-           
+                <!---start-blog-pagenate---->       
 @endsection
